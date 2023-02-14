@@ -15,7 +15,7 @@ def discount_rate(i,t):
 
     df = age(t)
     # Create a new column 'discount_rate' by multiplying t by 0.04
-    df['discount_rate'] = ((1+i)**-t)
+    df['discount_rate'] = ((1+i)**-(t+1))
 
     return df
 
@@ -31,7 +31,7 @@ def annuity_payment(t):
 
 def mort_rate(t):
 
-
+    print("hi")
     values = age(t).merge(AM92,left_on='age_at_t',right_on='Age x',how='left')
     values.rename(columns={'Duration 2': 'mort_rate_t'}, inplace=True)
     return values[["age_at_t","mort_rate_t"]]
@@ -48,9 +48,11 @@ def age(t):
 
 def a_due(i):
     summ = 0
-    for j in range(5):
 
-        summ += (epv_cf(i,j))
+    for j in range(122):
+        print (epv_cf(i,j).iloc[0])
+
+        summ += (epv_cf(i,j).fillna(0))
 
 
     return summ["epv_cf"]
@@ -76,10 +78,10 @@ def age_at_entry():
 def prob_if(t):
     #probability IF at end of t
     product = 1
-    print(range(t+1))
+    #print(range(t+1))
     for i in range(t + 1):
-        print (i)
-        print (surv_rate(i))
+        #print (i)
+        #print (surv_rate(i))
         product *= surv_rate(i)
 
     #we now have our probabilities in product["surv_rate_t"]
@@ -104,7 +106,7 @@ def prob_if(t):
 def surv_rate(t):
 
     df = mort_rate(t)
-    print(df)
+    #print(df)
     df['mort_rate_t'] = 1 - df['mort_rate_t']
     df.rename(columns={'mort_rate_t': 'surv_rate_t'}, inplace=True)
     return df
@@ -123,6 +125,6 @@ def epv_cf(i,t):
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 2230352475616, 2230352834272)
+AM92 = ("IOSpec", 2230349575984, 2230352930752)
 
-model_points = ("IOSpec", 2230349834320, 2230352638592)
+model_points = ("IOSpec", 2230358857232, 2230358830384)
