@@ -118,14 +118,12 @@ def epv_cf(i,t):
 
 
 def a_arrears(i):
-    #i don't like having to import within a function, what is the proper way to do this
-    import pandas as pd
     summ = 0
     for j in range(122):
          summ += (epv_cf(i,j).fillna(0))
-    #summ = summ.to_frame()
-    df = pd.concat([epv_cf(i,0)['age_at_t'], summ['epv_cf']], axis=1)
-    return df
+    summ.to_frame()
+    #df = pd.concat([epv_cf(i,0)['age_at_t'], summ['surv_rate_t']], axis=1)
+    return summ["epv_cf"]
 
 
 # ---------------------------------------------------------------------------
