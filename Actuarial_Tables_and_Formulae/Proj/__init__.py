@@ -31,7 +31,7 @@ def annuity_payment(t):
 
 def mort_rate(t):
 
-    print("hi")
+
     values = age(t).merge(AM92,left_on='age_at_t',right_on='Age x',how='left')
     values.rename(columns={'Duration 2': 'mort_rate_t'}, inplace=True)
     return values[["age_at_t","mort_rate_t"]]
@@ -47,15 +47,10 @@ def age(t):
 
 
 def a_due(i):
-    summ = 0
 
-    for j in range(122):
-        print (epv_cf(i,j).iloc[0])
+    df = a_arrears(i) + 1
 
-        summ += (epv_cf(i,j).fillna(0))
-
-
-    return summ["epv_cf"]
+    return df
 
 
 def duration(age_lb,age_at_entry):
@@ -122,9 +117,18 @@ def epv_cf(i,t):
     return df
 
 
+def a_arrears(i):
+    summ = 0
+    for j in range(122):
+         summ += (epv_cf(i,j).fillna(0))
+    summ.to_frame()
+    #df = pd.concat([epv_cf(i,0)['age_at_t'], summ['surv_rate_t']], axis=1)
+    return summ["epv_cf"]
+
+
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 2230349575984, 2230352930752)
+AM92 = ("IOSpec", 1850250190560, 1850250569328)
 
-model_points = ("IOSpec", 2230358857232, 2230358830384)
+model_points = ("IOSpec", 1850251395664, 1850249908336)
