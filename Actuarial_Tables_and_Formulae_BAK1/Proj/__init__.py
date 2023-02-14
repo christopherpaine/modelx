@@ -47,8 +47,8 @@ def age(t):
 
 
 def a_due(i):
-
-    df = a_arrears(i) + 1
+    df = a_arrears(i)
+    df["epv_cf"] = df["epv_cf"] + 1
 
     return df
 
