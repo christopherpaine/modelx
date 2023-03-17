@@ -62,9 +62,10 @@ def duration(age_lb,age_at_entry):
 
 
 def age_at_entry():
-
-
-
+    '''
+    takes our model point data frame (which currently is a list of ages 17 to 120)
+    and reads it into this cell
+    '''
 
 
     return model_points["age_at_entry"]
@@ -131,6 +132,6 @@ def a_arrears(i):
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 1850250190560, 1850250569328)
+AM92 = ("IOSpec", 1881856656720, 1881849860832)
 
-model_points = ("IOSpec", 1850251395664, 1850249908336)
+model_points = ("IOSpec", 1881851054448, 1881854644080)
