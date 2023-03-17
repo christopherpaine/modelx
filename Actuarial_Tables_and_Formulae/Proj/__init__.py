@@ -100,6 +100,19 @@ def age_at_entry():
 
 
 def prob_if(t):
+    '''
+    returns age_at_t
+    and a survival function
+
+    now i think we have a problem here that permeates throughout this build since
+    the survival function actually loops up to t+1
+    however this in someway seems in keeping with the discount rates
+    which <>1 at t=0
+    therefore when we correct discount rates we will also want to correct this function
+    so that at t=0 we have a survival rate =1
+
+
+    '''
     #probability IF at end of t
     product = 1
     #print(range(t+1))
@@ -119,10 +132,6 @@ def prob_if(t):
 
     # Rename the columns in the new dataframe
     df.columns = ['age_at_t', 'prob_if_t']
-
-    # Verify the new dataframe
-    #print(df)
-
 
     return df
 
