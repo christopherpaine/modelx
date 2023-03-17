@@ -30,7 +30,13 @@ def discount_rate(i,t):
 
 
 def annuity_payment(t):
+    '''
+    takes age_at_t and creates a column for this
+    the second column is the annuity payment for that life
+    and is set to 1
 
+    it is this feature that means we have a lifetime annuity since they continue regardless of age.
+    '''
     df = age(t)
     # Create a new column 'discount_rate' by multiplying t by 0.04
     df['annuity_payment'] = 1
