@@ -45,8 +45,18 @@ def annuity_payment(t):
 
 
 def mort_rate(t):
+    '''
+    takes out AM92 dataframe of mortality rates
+    and joins with our age_at_t table
 
+    consequently we return age and mortality rate for that life at t
 
+    we choose duration 2 i.e. multiple rates
+
+    ideally we would have multiple tables and parameterise the AM92 aspect
+    with this in mind, an appropriate place to specify the AM92
+    would be within the model point file
+    '''
     values = age(t).merge(AM92,left_on='age_at_t',right_on='Age x',how='left')
     values.rename(columns={'Duration 2': 'mort_rate_t'}, inplace=True)
     return values[["age_at_t","mort_rate_t"]]
