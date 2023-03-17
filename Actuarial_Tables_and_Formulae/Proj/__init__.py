@@ -128,7 +128,10 @@ def prob_if(t):
 
 
 def surv_rate(t):
-
+    '''
+    returns age_at_t and surv_rate_t
+    whereby surv_rate_t is simply 1 minus mortality rate
+    '''
     df = mort_rate(t)
     #print(df)
     df['mort_rate_t'] = 1 - df['mort_rate_t']
