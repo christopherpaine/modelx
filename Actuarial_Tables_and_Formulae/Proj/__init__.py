@@ -38,7 +38,10 @@ def mort_rate(t):
 
 
 def age(t):
-
+    '''
+    takes out age_at_entry and increments each 
+    as our time parameter advance
+    '''
     df1 = age_at_entry+t
     df2 = df1.to_frame()
     df2.rename(columns={'age_at_entry': 'age_at_t'}, inplace=True)
