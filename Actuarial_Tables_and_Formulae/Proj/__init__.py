@@ -16,6 +16,11 @@ def discount_rate(i,t):
     a 2 parameter function that takes our age of each model point at time t  i.e. age(t)
     and creates a discount factor such that
     at t=0 we have a factor of 1 year
+
+    the end result is a column for the 'age_at_t' for each model point
+    and a column for the discount point
+    (is there a concern here with duplicating age_at_t)
+
     '''
     df = age(t)
     # Create a new column 'discount_rate' by multiplying t by 0.04
