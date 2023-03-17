@@ -75,6 +75,12 @@ def age(t):
 
 
 def a_due(i):
+    '''
+    currently there is a need to add 1 to epv_cf in order to get a_due
+    however when we correct discount rate and prob_if etc so that they
+    return the correct values for t=0 (and are not in effect one year early on everything)
+    we will be able to remove +1
+    '''
     df = a_arrears(i)
     df["epv_cf"] = df["epv_cf"] + 1
 
