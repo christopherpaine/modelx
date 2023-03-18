@@ -162,7 +162,12 @@ def epv_cf(i,t):
 
 
 def a_arrears(i):
-    #i don't like having to import within a function, what is the proper way to do this
+    '''
+    i don't like having to import within a function, what is the proper way to do this
+    we have a hardcoded end point for the loop which should really be determined
+    from the entries in epv_cf instead
+
+    '''
     import pandas as pd
     summ = 0
     for j in range(122):
