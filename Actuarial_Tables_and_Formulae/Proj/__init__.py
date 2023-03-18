@@ -87,14 +87,6 @@ def a_due(i):
     return df
 
 
-def duration(age_lb,age_at_entry):
-
-
-
-
-    return 1
-
-
 def age_at_entry():
     '''
     takes our model point data frame (which currently is a list of ages 17 to 120)
@@ -178,6 +170,6 @@ def a_arrears(i):
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 1881856656720, 1881849860832)
+AM92 = ("IOSpec", 2800035843232, 2800036199056)
 
-model_points = ("IOSpec", 1881851054448, 1881854644080)
+model_points = ("IOSpec", 2800041758336, 2800035810560)
