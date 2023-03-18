@@ -147,7 +147,12 @@ def surv_rate(t):
 
 
 def epv_cf(i,t):
-
+    '''
+    multiplication of annuity payment ,  discountr rate , probability if for each t
+    note this function is specific to our annuity product
+    so we may want to parameterise the product in future
+    when the model expands
+    '''
     df = age(t)
     df["epv_cf"] = annuity_payment(t)["annuity_payment"]*discount_rate(i,t)["discount_rate"]*prob_if(t)["prob_if_t"]
 
@@ -170,6 +175,6 @@ def a_arrears(i):
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 2800035843232, 2800036199056)
+AM92 = ("IOSpec", 2903593529696, 2903593122976)
 
-model_points = ("IOSpec", 2800041758336, 2800035810560)
+model_points = ("IOSpec", 2903593529984, 2903593533344)
