@@ -166,7 +166,11 @@ def a_arrears(i):
     i don't like having to import within a function, what is the proper way to do this
     we have a hardcoded end point for the loop which should really be determined
     from the entries in epv_cf instead
-
+    we loop over time and add together column of epv_cf to give use expected npv 
+    for each model point
+    we then concatenate back in our age_at_t column at time 0
+    in practice it may be better to have a function that has time as a parameter
+    so that we calculated the annuity function at any time
     '''
     import pandas as pd
     summ = 0
