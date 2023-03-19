@@ -99,8 +99,9 @@ def prob_if(t):
     and a survival function
 
     '''
+    import pandas as pd
     if t==0:
-        product =1
+        product = pd.DataFrame({'surv_rate_t': [1] * len(surv_rate(t))})
     else:    
         #probability IF at end of t
         product = 1
@@ -112,7 +113,7 @@ def prob_if(t):
 
     #we now have our probabilities in product["surv_rate_t"]
 
-    import pandas as pd
+
 
     # Assuming you already have the two dataframes 'surv_rate' and 'product'
 
