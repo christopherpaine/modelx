@@ -22,7 +22,7 @@ def discount_rate(i,t):
     (is there a concern here with duplicating age_at_t)
 
     '''
-    df = age(t)
+    df = age(t).copy()
     # Create a new column 'discount_rate' by multiplying t by 0.04
     df['discount_rate'] = ((1+i)**-(t+1))
 
@@ -37,7 +37,7 @@ def annuity_payment(t):
 
     it is this feature that means we have a lifetime annuity since they continue regardless of age.
     '''
-    df = age(t)
+    df = age(t).copy()
     # Create a new column 'discount_rate' by multiplying t by 0.04
     df['annuity_payment'] = 1
 
@@ -81,7 +81,7 @@ def a_due(i):
     return the correct values for t=0 (and are not in effect one year early on everything)
     we will be able to remove +1
     '''
-    df = a_arrears(i)
+    df = a_arrears(i).copy()
     df["epv_cf"] = df["epv_cf"] + 1
 
     return df
@@ -184,6 +184,6 @@ def a_arrears(i):
 # ---------------------------------------------------------------------------
 # References
 
-AM92 = ("IOSpec", 2903593529696, 2903593122976)
+AM92 = ("IOSpec", 1557857367280, 1557850446944)
 
-model_points = ("IOSpec", 2903593529984, 2903593533344)
+model_points = ("IOSpec", 1557857366944, 1557850028928)
