@@ -24,7 +24,7 @@ def discount_rate(i,t):
     '''
     df = age(t).copy()
     # Create a new column 'discount_rate' by multiplying t by 0.04
-    df['discount_rate'] = ((1+i)**-(t+1))
+    df['discount_rate'] = ((1+i)**-(t))
 
     return df
 
@@ -76,13 +76,9 @@ def age(t):
 
 def a_due(i):
     '''
-    currently there is a need to add 1 to epv_cf in order to get a_due
-    however when we correct discount rate and prob_if etc so that they
-    return the correct values for t=0 (and are not in effect one year early on everything)
-    we will be able to remove +1
     '''
     df = a_arrears(i).copy()
-    df["epv_cf"] = df["epv_cf"] + 1
+    df["epv_cf"] = df["epv_cf"]
 
     return df
 
@@ -102,22 +98,17 @@ def prob_if(t):
     returns age_at_t
     and a survival function
 
-    now i think we have a problem here that permeates throughout this build since
-    the survival function actually loops up to t+1
-    however this in someway seems in keeping with the discount rates
-    which <>1 at t=0
-    therefore when we correct discount rates we will also want to correct this function
-    so that at t=0 we have a survival rate =1
-
-
     '''
-    #probability IF at end of t
-    product = 1
-    #print(range(t+1))
-    for i in range(t + 1):
-        #print (i)
-        #print (surv_rate(i))
-        product *= surv_rate(i)
+    if t==0:
+        product =1
+    else:    
+        #probability IF at end of t
+        product = 1
+        #print(range(t+1))
+        for i in range(t):
+            #print (i)
+            #print (surv_rate(i))
+            product *= surv_rate(i)
 
     #we now have our probabilities in product["surv_rate_t"]
 
@@ -153,7 +144,7 @@ def epv_cf(i,t):
     so we may want to parameterise the product in future
     when the model expands
     '''
-    df = age(t)
+    df = age(t).copy()
     df["epv_cf"] = annuity_payment(t)["annuity_payment"]*discount_rate(i,t)["discount_rate"]*prob_if(t)["prob_if_t"]
 
 
